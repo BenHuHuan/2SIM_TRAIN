@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "twosim-train"
+version = "0.1.0"
+description = "2SIM_TRAIN: Zero-Lag Heterogeneous GPU+CPU Dual-Simulator Crossfire Plugin for MLAB4_Fast (MuJoCo 4.0 Warp) + Raisim2_FAST (RaiSim 2.16+ OpenMP)"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Huan Hu (BenHuHuan)"}
+]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+2sim-train = "twosim_train.cli:main_train"
+2sim-autotune = "twosim_train.cli:main_autotune"
+
+[tool.setuptools.packages.find]
+where = ["src"]
