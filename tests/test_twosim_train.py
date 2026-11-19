@@ -14,6 +14,7 @@ from twosim_train import (
 
 
 def test_resolve_hybrid_split_ratios_and_alignment():
+    assert resolve_hybrid_split(4096) == (2048, 2048)  # Default 50/50 Crossfire
     assert resolve_hybrid_split(4096, raisim_ratio=0.0) == (4096, 0)
     assert resolve_hybrid_split(4096, raisim_ratio=1.0) == (0, 4096)
     assert resolve_hybrid_split(4096, raisim_ratio=0.25) == (3072, 1024)

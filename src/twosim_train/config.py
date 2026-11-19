@@ -54,7 +54,7 @@ def resolve_hybrid_split(
         elif mj_ratio is not None:
             r_rs = 1.0 - float(mj_ratio)
         else:
-            r_rs = 0.25  # Default: 75% MuJoCo 4.0 Warp (GPU) + 25% Raisim2_FAST (CPU)
+            r_rs = 0.5  # Default: 50% MuJoCo 4.0 Warp (GPU) + 50% Raisim2_FAST (CPU)
         if not (0.0 <= r_rs <= 1.0):
             raise ValueError(f"Mixing ratio must be in [0.0, 1.0], got raisim_ratio={r_rs}")
         if r_rs <= 0.0:

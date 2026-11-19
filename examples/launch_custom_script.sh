@@ -10,7 +10,7 @@ source "${RAISIM_DIR:-$HOME/raisim2Lib}/raisim_env.sh"
 
 # 3. Launch MLAB4_Fast built-in task OR your own train_*.py script with 2sim-train!
 exec 2sim-train Mjlab-Velocity-Flat-Unitree-G1 \
-  --raisim-ratio "${HYBRID_RAISIM_RATIO:-0.25}" \
+  --raisim-ratio "${HYBRID_RAISIM_RATIO:-0.50}" \
   --rs-threads "${RAISIM_NUM_THREADS:-64}" \
   --num-envs 4096 \
   "$@"

@@ -47,7 +47,7 @@ def main_train() -> None:
             "  2) Wrap any custom training script:\n"
             "       2sim-train path/to/train_script.py --raisim-ratio 0.25 [script args...]\n\n"
             "2SIM_TRAIN Options (stripped before forwarding remaining args):\n"
-            "  --raisim-ratio / --rs-ratio <0.0..1.0>   Fraction of envs stepped on CPU Raisim2_FAST (default: 0.25)\n"
+            "  --raisim-ratio / --rs-ratio <0.0..1.0>   Fraction of envs stepped on CPU Raisim2_FAST (default: 0.50)\n"
             "  --mj-ratio <0.0..1.0>                    Fraction of envs stepped on GPU MuJoCo 4.0 Warp\n"
             "  --mj-envs <int> / --rs-envs <int>        Explicit per-simulator world counts\n"
             "  --rs-threads <int>                       OpenMP CPU thread count for Raisim2_FAST (default: $RAISIM_NUM_THREADS or nproc)\n"
@@ -79,7 +79,7 @@ def main_train() -> None:
         elif "HYBRID_RS_ENVS" in os.environ:
             rs_envs = int(os.environ["HYBRID_RS_ENVS"])
         else:
-            raisim_ratio = 0.25
+            raisim_ratio = 0.50
 
     os.environ.setdefault("_MJLAB_BACKEND_REEXEC", "1")
     py_exe = sys.executable

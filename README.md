@@ -86,15 +86,14 @@ Wrap **any** built-in `MLAB4_Fast` task **or** any custom training script (`trai
 ```bash
 source /path/to/Raisim2_FAST/raisim_env.sh
 
-# 1) Launch a built-in MLAB4_Fast task (auto-compiles MjModel to O(1) analytical RaiSim URDF on first run!)
+# 1) Launch a built-in MLAB4_Fast task (defaults to 50/50 Crossfire: 2048 MJ GPU + 2048 RS CPU!)
 2sim-train Mjlab-Velocity-Flat-Unitree-G1 \
-  --raisim-ratio 0.25 \
   --rs-threads 64 \
   --num-envs 4096
 
-# 2) Launch any custom humanoid / SDK training script with arbitrary mixing ratio
+# 2) Dial --raisim-ratio freely (e.g. 0.25 or 0.1875 to beat standalone GPU MuJoCo speed!)
 2sim-train scripts/train_c_sdk_recovery.py \
-  --raisim-ratio 0.1875 \
+  --raisim-ratio 0.25 \
   --rs-threads 64 \
   --raisim-asset-dir /path/to/optional_precompiled_asset \
   --train --init scratch --num-envs 4096 --fp32-exact
@@ -108,7 +107,7 @@ Add two lines before `ManagerBasedRlEnv` (or any subclass) is instantiated:
 from twosim_train import enable_crossfire
 
 enable_crossfire(
-    raisim_ratio=0.25,       # 0.0 = pure MJ4 GPU | 0.25 = 3072 MJ + 1024 RS | 1.0 = pure Raisim2_FAST
+    raisim_ratio=0.50,       # Default 50/50 (2048 MJ + 2048 RS) | 0.125..0.25 = faster than pure GPU MJ4
     rs_threads=64,           # OpenMP threads for CPU Raisim2_FAST
     strict_ieee_fp32=True,   # Lossless 23-bit IEEE 754 FP32 (allow_tf32=False)
 )
